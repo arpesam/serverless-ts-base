@@ -7,11 +7,9 @@ services:
     restart: always
     ports: 
       - "4050:4050"
-    command: npm run dev
+    command: /bin/bash
     volumes:
       - ./:/usr/src/app
       - ./node_modules:/usr/src/app/node_modules
-    # environment:
-    #   STAGE: local
     env_file:
       - .env
