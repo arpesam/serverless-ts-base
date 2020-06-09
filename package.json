@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Sanar TS Serververless",
   "main": "handler.js",
+  "repository": "https://github.com/arpesam/serverless-ts-base",
+  "author": "@arpesam <daniloarpesam@gmail.com>",
   "scripts": {
     "dev": "sls offline start --useChildProcesses",
     "test": "NODE_ENV=test ./node_modules/.bin/jest --verbose",
@@ -43,6 +45,5 @@
     "webpack": "^4.29.0",
     "webpack-node-externals": "^1.7.2"
   },
-  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT"
 }
