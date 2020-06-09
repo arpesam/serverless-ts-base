@@ -2,12 +2,12 @@ version: '3'
 
 services:
   serverless:
-    container_name: serverless
+    container_name: serverless_os
     build: .
     restart: always
     ports: 
       - "4050:4050"
-    command: /bin/bash
+    command: npm run dev
     volumes:
       - ./:/usr/src/app
       - ./node_modules:/usr/src/app/node_modules
