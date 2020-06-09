@@ -1,7 +1,7 @@
 {
   "name": "ts-serverless-base",
   "version": "1.0.0",
-  "description": "Sanar TS Serververless",
+  "description": "TS Serververless",
   "main": "handler.js",
   "repository": "https://github.com/arpesam/serverless-ts-base",
   "author": "@arpesam <daniloarpesam@gmail.com>",
