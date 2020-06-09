@@ -1,0 +1,52 @@
+service:
+  name: ts-serverless-base
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  serverless-iam-roles-per-function:
+    defaultInherit: true # Each function will inherit the service level roles too.
+  prune: # automatically prune old lambda versions
+    automatic: true
+    number: 3
+  serverless-offline:
+    host: 0.0.0.0
+    httpPort: 4050
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-iam-roles-per-function # allow rules by function, not globally
+  - serverless-webpack
+  - serverless-offline
+  - serverless-prune-plugin # it will delete old lambdas
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  stage: dev
+  # tracing:
+  #   lambda: true
+  apiGateway:
+    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource: "*"
+
+functions:
+  get-postal-code:
+    name: ${opt:stage, 'dev'}-get-postal-code
+    handler: src/handler.getPostalCode
+    events:
+      - http:
+          method: post
+          path: /get-postal-code

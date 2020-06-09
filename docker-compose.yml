@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  serverless:
+    container_name: serverless
+    build: .
+    restart: always
+    ports: 
+      - "4050:4050"
+    command: npm run dev
+    volumes:
+      - ./:/usr/src/app
+      - ./node_modules:/usr/src/app/node_modules
+    # environment:
+    #   STAGE: local
+    env_file:
+      - .env
